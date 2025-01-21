@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق تسهيل</title>
+    <style>
+        /* تنسيق عام للصفحة */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #a8d0e6, #f1f8ff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* تنسيق مربع المحتوى */
+        .app-container {
+            text-align: center;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* تنسيق صورة التطبيق */
+        .app-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 5px solid #a8d0e6;
+            transition: transform 0.3s ease;
+        }
+
+        /* تأثير تكبير الصورة عند المرور فوقها */
+        .app-container img:hover {
+            transform: scale(1.1);
+        }
+
+        /* تنسيق اسم التطبيق */
+        .app-container h1 {
+            font-size: 2em;
+            color: #4f8c9e;
+            margin: 0;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #4f8c9e, #a8d0e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        /* تنسيق وصف التطبيق */
+        .app-container p {
+            font-size: 1.2em;
+            color: #555;
+            margin: 0;
+        }
+
+        /* تنسيق عرض التوكن */
+        .app-container .token-display {
+            font-size: 1.1em;
+            color: #4f8c9e;
+            margin-top: 20px;
+            padding: 10px;
+            background: #f1f8ff;
+            border-radius: 10px;
+            border: 1px solid #a8d0e6;
+        }
+
+        /* تأثير ظهور الصفحة */
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+    <!-- استخدام خط عربي من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- صورة التطبيق -->
+        <img src="assets/mobile.png" alt="شعار تطبيق تسهيل">
+        
+        <!-- اسم التطبيق -->
+        <h1>تطبيق تسهيل</h1>
+        
+        <!-- وصف التطبيق -->
+        <p>رمز التحقق لتسجيل دخولك داخل التطبيق :</p>
+
+        <!-- عرض التوكن -->
+        <div class="token-display" id="token-display">
+            جارٍ تحميل التوكن...
+        </div>
+    </div>
+
+    <script>
+        // استخراج التوكن من الرابط
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        // عرض التوكن في الصفحة
+        const tokenDisplay = document.getElementById('token-display');
+        if (token) {
+            tokenDisplay.textContent = `رمز التحقق : ${token}`; // عرض التوكن
+        } else {
+            tokenDisplay.textContent ="انتهت صلاحيه رمز التحقق "
+        }
+    </script>
+</body>
+</html>
